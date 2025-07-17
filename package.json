@@ -1,0 +1,28 @@
+{
+  "name": "track-magento-playwright-ts-automation",
+  "version": "1.0.0",
+  "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": { 
+    "test:identifyflackytest": "npx playwright test tests/e2e.spec.ts --repeat-each=5",
+              
+    "test:e2e": "npx playwright test tests/e2e.spec.ts",                               
+    "test:headed": "npx playwright test --headed"                                          
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "@playwright/test": "^1.54.1",
+    "@types/random-string": "^0.2.0",
+    "playwright": "^1.54.1",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.8.3"
+  },
+  "dependencies": {
+    "random-string": "^0.2.0"
+  }
+}

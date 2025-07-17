@@ -1,0 +1,18 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@helpers/*": ["helpers/*"],
+      "@fixtures/*": ["fixtures/*"],
+      "@pages/*": ["pages/*"]
+    },
+    "esModuleInterop": true,
+    "target": "ES2018",
+     "module": "commonjs",
+        //"outDir": "./dist",
+       // "rootDir": "./src",
+        "strict": true,
+        "skipLibCheck": true,
+        "forceConsistentCasingInFileNames": true
+  }
+}

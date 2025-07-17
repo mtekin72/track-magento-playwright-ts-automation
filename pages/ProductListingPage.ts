@@ -7,7 +7,7 @@ export class ProductListingPage extends BasePage {
   }
 
   /**
-   * Clicks a random product from the list of product items
+   Clicks a random product 
    */
   async selectRandomProduct(): Promise<void> {
     const products = this.page.locator(".product-item");
@@ -24,19 +24,3 @@ export class ProductListingPage extends BasePage {
     await product.click();
   }
 }
-
-// import { expect, Page } from '@playwright/test';
-// import { BasePage } from '@pages/BasePage';
-
-// export class ProductListingPage extends BasePage {
-
-//   async selectRandomProduct(page: Page): Promise<void> {
-//   const products = page.locator('.product-item');
-//   const count = await products.count();
-//   const random = Math.floor(Math.random() * count);
-//   const product = products.nth(random);
-//   await product.click();
-
-// }
-
-// }

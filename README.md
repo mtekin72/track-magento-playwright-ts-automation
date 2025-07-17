@@ -71,27 +71,50 @@ npm run test:e2e
 
 ```
 
-### Run UI Tests
+### Run e2e Tests
 ```bash
-npm run test:UI
-```
-
-### Run Heade Mode
-```bash
- "test:headed": "npx playwright test --headed" 
+npm run test:e2e
 ```
 
 ## Test Reports
 
-- After running tests, an HTML report is generated in the `playwright-report/` directory.
-- To view the report, open `playwright-report/index.html` in a browser.
+html-report/index.html
 
-## Test Strategy
 
-The testing strategy for this project is designed to ensure comprehensive coverage of both UI and API functionalities. The tests are categorized into **positive** and **negative** scenarios to validate the application's behavior under various conditions.
+## Test Coverage
 
-### UI Tests
+The main E2E flows covered:
 
+Product selection by category, size, color, and quantity
+
+Filter by attributes (Size, Color, Activity, etc.)
+
+Cart and quantity validation
+
+Checkout with discount (20poff) and Netherlands shipping verification
+
+Random valid product add-to-cart and error handling
+
+### Manual/Automated Bug Reports
+During test execution, these real site issues were discovered:
+
+1. Quantity Mis-match When Adding Multiple Items
+Scenario: Add a product to cart with quantity 2.
+Status: Automation test scenario fails on asserting cart quantity. Manual browser test confirms bug.
+
+2. Incorrect Product Color Reflected in Cart Image
+Scenario: Select a product with color "Blue".
+
+Issue: Cart/image shows a different color (e.g., orange) than the selection—color selection is not synchronized.
+
+Status: Automation checks color matching and fails; manual test confirms image/selection mismatch.
+
+3. ⚠️ Random Product Add: Successes and Failures
+Scenario: Randomly select a product (e.g., Gear > Bags).
+
+Issue: If the product is in stock, add-to-cart works. If not, site shows an error and test fails (reflecting user experience).
+
+Status: The test robustly surfaces if the add-to-cart failed due to genuine unavailability and signals with a clear error.
 #### Positive Tests
 - Validate the final price after checkout which contains 2 items.
 - Validate sorting of item by name Z-A order.

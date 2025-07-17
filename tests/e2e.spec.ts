@@ -54,17 +54,23 @@ test("should navigate to Men's Jackets and add product with XS size and Blue col
   await headerPage.selectSubCategory(subCategory);
   await closeAdIfPresent(page);
   await headerPage.clickCategoryButton();
+  await closeAdIfPresent(page);
   await headerPage.selectFilterOption(productCategory.toLowerCase());
+  await closeAdIfPresent(page);
   await assertionHelper.assertSelectedFilter(productCategory);
 
   await productDetailsPage.selectSize(size);
+  await closeAdIfPresent(page);
   await productDetailsPage.selectColor(color);
+  await closeAdIfPresent(page);
   await assertionHelper.assertSelectedColor(color);
   await assertionHelper.assertSizeSelection(size, "rgb(255, 85, 1)");
 
   await productDetailsPage.addToCart();
+  await closeAdIfPresent(page);
   await assertionHelper.assertProductAddedToCart(product);
   await cartPage.goToCart();
+  await closeAdIfPresent(page);
 
   await expect(page.locator(".cart.item .item-options")).toContainText(size);
   await expect(page.locator(".cart.item .product-item-details")).toContainText(
@@ -99,16 +105,22 @@ test("should navigate to Women's Jackets and add 2 units with XS size and Blue c
   await headerPage.selectSubCategory(subCategory);
   await closeAdIfPresent(page);
   await headerPage.clickCategoryButton();
+  await closeAdIfPresent(page);
   await headerPage.selectFilterOption(productCategory);
+  await closeAdIfPresent(page);
 
   await productDetailsPage.selectSize(size);
+  await closeAdIfPresent(page);
   await productDetailsPage.selectColor(color);
+  await closeAdIfPresent(page);
   await assertionHelper.assertSelectedColor(color);
   await assertionHelper.assertSizeSelection(size, "rgb(255, 85, 1)");
 
   await productDetailsPage.addToCart();
+  await closeAdIfPresent(page);
   await assertionHelper.assertProductAddedToCart(product);
   await cartPage.goToCart();
+  await closeAdIfPresent(page);
   await cartPage.setProductQuantity(quantity);
 
   await expect(page.locator(".cart.item .item-options")).toContainText(size);
@@ -136,10 +148,12 @@ test("should navigate to Gear → Bags and filter products by Activity = Yoga", 
   await homepage.goto("/");
   await handleConsent(page);
   await headerPage.selectCategory(category);
+  await closeAdIfPresent(page);
   await assertionHelper.assertCategoryInURL(category);
   await headerPage.selectSubCategory(subCategory);
   await closeAdIfPresent(page);
   await headerPage.selectShoppingOption(option, activity);
+  await closeAdIfPresent(page);
   await headerPage.assertFilterApplied(option, activity);
 });
 
@@ -175,31 +189,43 @@ test('should verify checkout applies "20poff" discount and calculates Netherland
   await homepage.goto("/");
   await handleConsent(page);
   await headerPage.selectCategory(category);
+  await closeAdIfPresent(page);
   await headerPage.selectSubCategory(subCategory);
+  await closeAdIfPresent(page);
   await headerPage.clickCategoryButton();
+  await closeAdIfPresent(page);
   await headerPage.selectFilterOption(productCategory);
-
+  await closeAdIfPresent(page);
   await productDetailsPage.selectSize(size);
+  await closeAdIfPresent(page);
   await productDetailsPage.selectColor(color);
+  await closeAdIfPresent(page);
   await productDetailsPage.addToCart();
+  await closeAdIfPresent(page);
   await cartPage.goToCart();
+  await closeAdIfPresent(page);
   await cartPage.setProductQuantity(quantity);
+  await closeAdIfPresent(page);
   await checkoutPage.proceedToCheckout();
+  await closeAdIfPresent(page);
   await checkoutPage.completeCheckoutForm({});
-
+  await closeAdIfPresent(page);
   await expect(
     page.locator('input[type="radio"][checked], .selected.shipping-method')
   ).toBeVisible();
   await checkoutPage.nextButton.click();
+  await closeAdIfPresent(page);
   await checkoutPage.discountPanelToggle.click();
+  await closeAdIfPresent(page);
   await checkoutPage.discountInput.fill(discountCode);
+  await closeAdIfPresent(page);
   await checkoutPage.discountButton.click();
-
+  await closeAdIfPresent(page);
   await expect(checkoutPage.discountMessage).toContainText(
     "Your coupon was successfully applied."
   );
   await checkoutPage.placeOrderButton.click();
-
+  await closeAdIfPresent(page);
   await expect(
     page.locator('tr:has(th:has-text("Discount")) th')
   ).toContainText("20%");
@@ -226,15 +252,21 @@ test("should verify that quantity is correctly applied", async ({ page }) => {
   await homepage.goto("/");
   await handleConsent(page);
   await headerPage.selectCategory(category);
+  await closeAdIfPresent(page);
   await headerPage.selectSubCategory(subCategory);
+  await closeAdIfPresent(page);
   await headerPage.clickCategoryButton();
+  await closeAdIfPresent(page);
   await headerPage.selectFilterOption(productCategory);
-
+  await closeAdIfPresent(page);
   await productDetailsPage.selectSize(size);
+  await closeAdIfPresent(page);
   await productDetailsPage.selectColor(color);
+  await closeAdIfPresent(page);
   await productDetailsPage.addToCart();
+  await closeAdIfPresent(page);
   await cartPage.goToCart();
-
+  await closeAdIfPresent(page);
   await expect(page.getByRole("spinbutton", { name: "Qty" })).toHaveValue(
     quantity.toString()
   );

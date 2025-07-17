@@ -203,7 +203,7 @@ test('should verify checkout applies "20poff" discount and calculates Netherland
   await expect(
     page.locator('tr:has(th:has-text("Discount")) th')
   ).toContainText("20%");
-  await expect(page.locator(".shipping-information-content")).toContainText(
+  await expect(page.locator(".shipping-information-content").first()).toContainText(
     shippingCountry
   );
   await expect(page.locator("span.price", { hasText: "-$7.84" })).toHaveText(

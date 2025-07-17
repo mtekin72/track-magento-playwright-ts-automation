@@ -11,7 +11,7 @@ export class HeaderPage extends BasePage {
       `//span[normalize-space(text())="${categoryName}"]`
     );
     await categorySpan.waitFor({ state: "visible", timeout: 5000 });
-    await categorySpan.click();
+    await categorySpan.click({force:true});
   }
 
   async clickCategoryButton(): Promise<void> {
@@ -20,7 +20,8 @@ export class HeaderPage extends BasePage {
     });
     await expect(categoryButton).toBeVisible({ timeout: 8000 });
     await categoryButton.scrollIntoViewIfNeeded();
-    await categoryButton.waitFor();
+    const searchBox: Locator = this.page.locator("#search"); 
+    await searchBox.fill("Playwright testing");
     await categoryButton.click();
   }
 
@@ -41,7 +42,6 @@ export class HeaderPage extends BasePage {
       }
     );
     if (!(await this.page.locator(".filter-options-item.active").isVisible())) {
-      await filterTitle.scrollIntoViewIfNeeded();
       await filterTitle.click();
     }
     await this.page.waitForSelector(

@@ -60,17 +60,6 @@ track-magento-playwright-ts-automation/
    npm install
    ```
 
-## Running Tests
- ```bash
-   npm run test:e2e
-
-   ```
-### Run All Tests
-```bash
-npm run test:e2e
-
-```
-
 ### Run e2e Tests
 ```bash
 npm run test:e2e
@@ -98,69 +87,28 @@ Random valid product add-to-cart and error handling
 ### Manual/Automated Bug Reports
 During test execution, these real site issues were discovered:
 
-1. Quantity Mis-match When Adding Multiple Items
-Scenario: Add a product to cart with quantity 2.
+1. Quantity Mis-match When Adding Multiple Items <br/>
+Issue: Cart still shows 1 item, not 2.<br/>
+Scenario: Add a product to cart with quantity 2.<br/>
 Status: Automation test scenario fails on asserting cart quantity. Manual browser test confirms bug.
 
 2. Incorrect Product Color Reflected in Cart Image
-Scenario: Select a product with color "Blue".
-
-Issue: Cart/image shows a different color (e.g., orange) than the selection—color selection is not synchronized.
-
+Scenario: Select a product with color "Blue".<br/>
+Issue: image shows a different color  than the selected colour.<br/>
 Status: Automation checks color matching and fails; manual test confirms image/selection mismatch.
 
-3. ⚠️ Random Product Add: Successes and Failures
-Scenario: Randomly select a product (e.g., Gear > Bags).
-
-Issue: If the product is in stock, add-to-cart works. If not, site shows an error and test fails (reflecting user experience).
-
-Status: The test robustly surfaces if the add-to-cart failed due to genuine unavailability and signals with a clear error.
-#### Positive Tests
-- Validate the final price after checkout which contains 2 items.
-- Validate sorting of item by name Z-A order.
-
-#### Negative Tests
-- Validating failed login with relevant username/password error message.
+3. Random Product Add<br/>
+Scenario: Randomly select a product.<br/>
+Issue:Even there is no stock issue mentioned, requested quantity show unavailable and test fails for some products.
 
 
-
-#### Positive Tests
-- Retrieve list of users.
-- Validate successful login.
-- Validate updating user.
-- Validate deleting user.
-- Validate parameterized delayed request with max 3 seconds delay in response.
-
-
-
-
-2. **AI usage**  
+**AI usage**  
    - **Usage**: GitHub Copilot was utilized to improve code readability, to generate the visual project structure outlined in the project structure section & support with improving playwright.yml file.
 
 ## CI/CD Integration
 
-This project uses GitHub Actions for CI/CD. The workflow is defined in `.github/workflows/playwright.yml`. It runs both UI and API tests on every push or pull request to the `master` branch.
+This project uses GitHub Actions for CI/CD. The workflow is defined in `.github/workflows/playwright.yml`. 
 
 **Reports in pipeline**  
-   - **UI & API**: Report can be found under the action tab and the respective job steps. 
+   - **e2e Test Report**: Report can be found under the action tab and the respective job steps. 
 
-## Key Features
-
-### UI Tests
-- Implements the Page Object Model (POM) design pattern.
-- Covers end-to-end checkout , login, and item sort management flows.
-
-### API Tests
-- CRUD operations for user api.
-- Negative test cases for invalid login.
-
-### Utilities
-- `helpers/ui.ts`: Utility functions for UI interactions.
-- `helpers/api.ts`: Helper functions for API requests.
-- `fixtures/`: Test data for both UI and API tests.
-
-### Running Tests in Docker
-- Execute the following command to build and run the tests in Docker:
-  ```bash
-  docker-compose up --build
-- Once the tests have completed, you can view the reports under playwright-report `index.html`.
